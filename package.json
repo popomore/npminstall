@@ -12,7 +12,9 @@
   },
   "scripts": {
     "test": "mocha -r thunk-mocha -t 120000 test/*.test.js",
-    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- -r thunk-mocha -t 120000 test/*.test.js",
+    "cover": "istanbul cover --report none --print none node_modules/mocha/bin/_mocha -- -r thunk-mocha -t 120000 test/*.test.js",
+    "report": "istanbul report text-summary json lcov",
+    "test-cov": "rm -rf coverage && npm run cover && npm run report",
     "test-local": "npm_china=true local=true mocha -r thunk-mocha -t 120000 test/*.test.js",
     "test-local-cov": "npm_china=true local=true istanbul cover node_modules/mocha/bin/_mocha -- -r thunk-mocha -t 120000 test/*.test.js",
     "lint": "eslint lib test bin",
